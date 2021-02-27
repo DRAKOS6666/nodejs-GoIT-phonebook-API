@@ -1,0 +1,44 @@
+{
+  "contacts": [
+    {
+      "name": "Kostya",
+      "email": "j@j.jj",
+      "id": "22deba84-1e56-4a8a-af81-d6331785c659"
+    },
+    {
+      "name": "Wylie Pope",
+      "email": "est@utquamvel.net",
+      "phone": "(692) 802-2949",
+      "id": "6202713d-83f7-4355-821e-616190dbb1c2"
+    },
+    {
+      "name": "Kostya-1",
+      "email": "j@j.jj",
+      "phone": "(063) 802-2949",
+      "id": "fbd8ad3d-5589-4853-ac3f-aee52e7fcb28"
+    },
+    {
+      "name": "Drakos6666",
+      "email": "drakos6666@utquamvel.net",
+      "phone": "(063) 078-2949",
+      "id": "035919b7-f7b8-414c-a7b6-7a51f7c9a899"
+    },
+    {
+      "name": "Bodya",
+      "email": "fefef@i.ua",
+      "id": "fda3e056-9dc3-42c5-bc51-804d47b573aa"
+    },
+    {
+      "name": "Masya",
+      "email": "masya@email.com",
+      "id": "c978ad46-6b13-4baa-abca-f327ebaa081d",
+      "phone": "+38 (067) 225-15-15"
+    },
+    {
+      "name": "Ivasik",
+      "email": "ivas@hmail.com",
+      "phone": "+38 (063) 078-30-77",
+      "id": "2656a6a1-7579-4c09-8fb0-3ca04df2305a"
+    }
+  ]
+}
