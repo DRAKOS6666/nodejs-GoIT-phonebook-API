@@ -9,6 +9,8 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
+    indent: [2, 2],
+    quotes: 0,
     'comma-dangle': 'off',
     'space-before-function-paren': 'off',
   },
