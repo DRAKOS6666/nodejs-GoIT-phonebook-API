@@ -1,9 +1,10 @@
 const { HttpCode } = require('../helpers/constans')
-const contactServices = require('../services/contact-services')
+const ContactsServices = require('../services/contact-services')
+const contactsServices = new ContactsServices()
 
 const listContacts = async (req, res, next) => {
   try {
-    const contacts = await contactServices.listContacts()
+    const contacts = await contactsServices.listContacts()
     res.status(HttpCode.OK).json({
       status: 'succes',
       code: HttpCode.OK,
@@ -18,7 +19,7 @@ const listContacts = async (req, res, next) => {
 
 const getContactById = async (req, res, next) => {
   try {
-    const contact = await contactServices.getContactById(req.params)
+    const contact = await contactsServices.getContactById(req.params)
     if (contact) {
       return res.status(HttpCode.OK).json({
         status: 'succes',
@@ -41,7 +42,7 @@ const getContactById = async (req, res, next) => {
 
 const addContact = async (req, res, next) => {
   try {
-    const contact = await contactServices.addContact(req.body)
+    const contact = await contactsServices.addContact(req.body)
     if (contact) {
       return res.status(HttpCode.OK).json({
         status: 'succes',
@@ -66,7 +67,7 @@ const updateContact = async (req, res, next) => {
   try {
     const { name, email, phone } = req.body
     if (name || email || phone) {
-      const contact = await contactServices.updateContact(req.params, req.body)
+      const contact = await contactsServices.updateContact(req.params, req.body)
       if (contact) {
         return res.status(HttpCode.OK).json({
           status: 'succes',
@@ -90,8 +91,7 @@ const updateContact = async (req, res, next) => {
 
 const removeContact = async (req, res, next) => {
   try {
-    const contact = await contactServices.removeContact(req.params)
-    console.log('req.params', req.params)
+    const contact = await contactsServices.removeContact(req.params)
     if (contact) {
       return res.status(HttpCode.OK).json({
         status: 'succes',
