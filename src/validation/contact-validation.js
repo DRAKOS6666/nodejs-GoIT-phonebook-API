@@ -1,9 +1,10 @@
 const Joi = require('joi')
+const joiOId = require('joi-oid')
+
 const { HttpCode } = require('../helpers/constans')
 
 const schemaCreate = Joi.object({
   name: Joi.string()
-    .alphanum()
     .min(3)
     .max(50)
     .required(),
@@ -16,7 +17,15 @@ const schemaCreate = Joi.object({
     .pattern(/[0-9, -+()]/)
     .min(5)
     .max(25)
+    .optional(),
+  subscription: Joi.string()
+    .optional(),
+  password: Joi.string()
+    .required(),
+  token: Joi.string()
+    .token()
     .optional()
+
 })
 
 const schemaUpdate = Joi.object({
@@ -25,23 +34,24 @@ const schemaUpdate = Joi.object({
     .min(3)
     .max(50)
     .optional(),
-
   email: Joi.string()
     .email({ minDomainSegments: 2 })
     .required(),
-
   phone: Joi.string()
     .pattern(/[0-9, -+()]/)
     .min(5)
     .max(25)
+    .optional(),
+  subscription: Joi.string()
+    .optional(),
+  password: Joi.string()
+    .required(),
+  token: Joi.string()
+    .token()
     .optional()
-})
 
-const schemaGetById = Joi.string().guid({
-  version: [
-    'uuidv4'],
-  separator: true,
-}).required()
+})
+const schemaGetById = joiOId.objectId().required()
 
 const validate = (schema, body, next) => {
   const { error } = schema.validate(body)
