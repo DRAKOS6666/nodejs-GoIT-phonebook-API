@@ -2,6 +2,7 @@ const express = require('express')
 
 const { HttpCode } = require('./helpers/constans')
 const { contactsRouter } = require('./api/contacts/contacts-router')
+const { usersRouter } = require('./api/users/users-router')
 
 const app = express()
 
@@ -9,6 +10,7 @@ app.use(express.json())
 
 app.use(express.urlencoded({ extended: false }))
 
+app.use('/api/users', usersRouter)
 app.use('/api/contacts', contactsRouter)
 
 app.use((req, res, next) => {
