@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
+const gravatar = require('gravatar')
 const bCrypt = require('bcryptjs')
-const { Subscription: { FREE, PRO, PREMIUM } } = require('../../src/helpers/constans')
 
-const saltFactor = process.env.SALT_WORK_FACTOR
+const { Subscription } = require('../../src/helpers/constans')
+const upload = require('../../src/helpers/upload')
+
+const saltFactor = Number(process.env.SALT_WORK_FACTOR)
 
 const { Schema, model } = mongoose
 
@@ -22,17 +25,26 @@ const userSchema = new Schema({
   },
   subscription: {
     type: String,
-    enum: [FREE, PRO, PREMIUM],
-    default: FREE
+    enum: [Subscription.FREE, Subscription.PRO, Subscription.PREMIUM],
+    default: Subscription.FREE
+  },
+  avatar: {
+    type: String,
+    default: null
+  },
+  avatarUrl: {
+    type: String,
+    default: function () {
+      const avatar = gravatar.url(this.email, { size: 200 }, true)
+      upload.single('avatar')
+      return avatar
+    }
   },
   token: {
     type: String,
     default: null
   }
 }, { versionKey: false, timestamps: true })
-
-// userSchema.methods.setPassword = function (password) {
-//   this.password = bCrypt.hashSync(password, bCrypt.genSaltSync(saltFactor))
 // }
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {

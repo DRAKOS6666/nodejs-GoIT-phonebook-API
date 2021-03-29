@@ -1,4 +1,7 @@
 const express = require('express')
+const cors = require('cors')
+const path = require('path')
+require('dotenv').config()
 
 const { HttpCode } = require('./helpers/constans')
 const { contactsRouter } = require('./api/contacts/contacts-router')
@@ -6,6 +9,9 @@ const { usersRouter } = require('./api/users/users-router')
 
 const app = express()
 
+app.use(express.static(path.join(process.cwd(), 'public', process.env.AVATARS_OF_USERS)))
+
+app.use(cors())
 app.use(express.json())
 
 app.use(express.urlencoded({ extended: false }))

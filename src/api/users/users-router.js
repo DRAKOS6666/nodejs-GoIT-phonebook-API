@@ -2,6 +2,7 @@ const express = require('express')
 const usersControllers = require('../../controllers/users-controllers')
 const userValidation = require('../../validation/user-validation')
 const { guard } = require('../../helpers/guard')
+const upload = require('../../helpers/upload')
 
 const usersRouter = express.Router()
 usersRouter
@@ -10,5 +11,6 @@ usersRouter
   .post('/auth/register', userValidation.register, usersControllers.register)
   .post('/auth/login', userValidation.login, usersControllers.login)
   .post('/auth/logout', guard, usersControllers.logout)
+  .patch('/avatars', guard, upload.single('avatar'), userValidation.validateUploadAvatar, usersControllers.avatars)
 
 module.exports = { usersRouter }

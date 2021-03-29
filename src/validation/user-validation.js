@@ -70,3 +70,15 @@ module.exports.logout = (req, res, next) => {
   const { contactId } = req.params
   return validate(schemaGetById, contactId, next)
 }
+
+module.exports.validateUploadAvatar = (req, res, next) => {
+  if (!req.file) {
+    return res.status(HttpCode.BAD_REQUEST).json({
+      status: 'error',
+      code: HttpCode.BAD_REQUEST,
+      data: 'Bad request',
+      message: 'Avatar file not found',
+    })
+  }
+  next()
+}

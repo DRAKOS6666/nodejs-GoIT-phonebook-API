@@ -21,10 +21,15 @@ const changeSubsc = async (id, subscription) => {
   return await UserSchema.updateOne({ _id: id }, { subscription })
 }
 
+const updateAvatar = async (id, avatar) => {
+  return await UserSchema.updateOne({ _id: id }, { avatar })
+}
+
 module.exports = {
   findByEmail,
   findById,
   updateToken,
   create,
-  changeSubsc
+  changeSubsc,
+  updateAvatar
 }
