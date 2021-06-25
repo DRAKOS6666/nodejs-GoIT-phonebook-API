@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
   err.status = err.status ? err.status : HttpCode.INTERNAL_SERVER_ERROR
-  res.status(HttpCode.NOT_FOUND).json({
+  res.status(err.status || HttpCode.INTERNAL_SERVER_ERROR).json({
     status: err.status === 500 ? 'fail' : 'error',
     code: err.status,
     message: err.message,

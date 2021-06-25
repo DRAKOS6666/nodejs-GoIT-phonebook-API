@@ -6,6 +6,7 @@ const guard = (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (error, user) => {
     let token = null
     if (req.get('Authorization')) {
+      // const token = req.get('Authorization')?.split(' ')[1]
       const [, tokenPure] = req.get('Authorization').split(' ')
       token = tokenPure
     }

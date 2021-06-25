@@ -46,7 +46,7 @@ const addContact = async (req, res, next) => {
     const userId = req.user.id
     const contact = await contactModel.addContact(req.body, userId)
     if (contact) {
-      return res.status(HttpCode.OK).json({
+      return res.status(HttpCode.CREATED).json({
         status: 'succes',
         code: HttpCode.CREATED,
         data: {

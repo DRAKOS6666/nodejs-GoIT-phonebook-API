@@ -14,9 +14,20 @@ const schemaRegister = Joi.object({
   password: Joi.string()
     .required(),
 })
+const schemaLogin = Joi.object({
+  email: Joi.string()
+    .email({ minDomainSegments: 2 })
+    .required(),
+  password: Joi.string()
+    .required(),
+  username: Joi.string()
+    .min(3)
+    .max(50)
+    .optional(),
+})
 
 const schemaUpdate = Joi.object({
-  name: Joi.string()
+  username: Joi.string()
     .alphanum()
     .min(3)
     .max(50)
@@ -63,6 +74,10 @@ module.exports.changeSubscription = (req, res, next) => {
 }
 
 module.exports.login = (req, res, next) => {
+  return validate(schemaLogin, req.body, next)
+}
+
+module.exports.update = (req, res, next) => {
   return validate(schemaUpdate, req.body, next)
 }
 

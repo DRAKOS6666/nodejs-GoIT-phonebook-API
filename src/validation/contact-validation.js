@@ -8,20 +8,17 @@ const schemaCreate = Joi.object({
     .min(3)
     .max(50)
     .required(),
-
-  email: Joi.string()
-    .email({ minDomainSegments: 2 })
-    .required(),
-
   phone: Joi.string()
     .pattern(/[0-9, -+()]/)
     .min(5)
     .max(25)
+    .required(),
+
+  email: Joi.string()
+    .email({ minDomainSegments: 2 })
     .optional(),
   subscription: Joi.string()
     .optional(),
-  password: Joi.string()
-    .required(),
   token: Joi.string()
     .token()
     .optional()
@@ -35,15 +32,13 @@ const schemaUpdate = Joi.object({
     .optional(),
   email: Joi.string()
     .email({ minDomainSegments: 2 })
-    .required(),
+    .optional(),
   phone: Joi.string()
     .pattern(/[0-9, -+()]/)
     .min(5)
     .max(25)
     .optional(),
   subscription: Joi.string()
-    .optional(),
-  password: Joi.string()
     .optional(),
   token: Joi.string()
     .token()
@@ -75,5 +70,6 @@ module.exports.update = (req, res, next) => {
 
 module.exports.contatctId = (req, res, next) => {
   const { contactId } = req.params
+  console.log('contactId validation', contactId)
   return validate(schemaGetById, contactId, next)
 }

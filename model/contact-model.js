@@ -2,7 +2,6 @@ const { Subscription } = require('../src/helpers/constans')
 const ContactSchema = require('./schema/contacts-schema')
 
 const listContacts = async (userId, query) => {
-  console.log('query', query)
   const { limit = 20, offset = 0, page = 1, sortBy, sortByDesc, sub } = query
   const options = {
     owner: userId,
